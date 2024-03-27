@@ -70,10 +70,20 @@ class GitTile1 extends StatelessWidget {
                 Row(
                   children: [
                     ClipOval(
-                        child: Image.network(
-                      gitModel.ownerAvatarUrl,
-                      scale: 15,
-                    )),
+                      child: Image.network(
+                        gitModel.ownerAvatarUrl,
+                        scale: 15,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: 30, // Set width as per your requirement
+                            height: 30, // Set height as per your requirement
+                            color: Colors
+                                .grey, // Set a placeholder color or any other widget to show when there's an error
+                            // You can also add any child widgets or error message here
+                          );
+                        },
+                      ),
+                    ),
 
                     // next button
                     Padding(

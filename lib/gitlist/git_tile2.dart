@@ -48,7 +48,7 @@ class GitTile2 extends StatelessWidget {
                           Text(
                             "Today , Shared by " + gitModel.name,
                             style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 8,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey),
                           ),
@@ -62,10 +62,22 @@ class GitTile2 extends StatelessWidget {
                                 fontSize: 16, fontWeight: FontWeight.w600),
                           ),
                           ClipOval(
-                              child: Image.network(
-                            gitModel.ownerAvatarUrl,
-                            scale: 15,
-                          )),
+                            child: Image.network(
+                              gitModel.ownerAvatarUrl,
+                              scale: 15,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  width:
+                                      30, // Set width as per your requirement
+                                  height:
+                                      30, // Set height as per your requirement
+                                  color: Colors
+                                      .grey, // Set a placeholder color or any other widget to show when there's an error
+                                  // You can also add any child widgets or error message here
+                                );
+                              },
+                            ),
+                          ),
                         ],
                       ),
                       Row(
@@ -81,7 +93,7 @@ class GitTile2 extends StatelessWidget {
                           Text(
                             "July 25, 2024 - July 30, 2024",
                             style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 10,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey),
                           ),
