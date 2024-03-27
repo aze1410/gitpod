@@ -14,24 +14,25 @@ class GitModel {
   final DateTime createdAt;
   final bool disabled; // Added field
   final int isOpenIssuesCount; // Added field
+  final int stars;
 
-  GitModel({
-    required this.id,
-    required this.name,
-    required this.fullName,
-    required this.ownerLogin,
-    required this.ownerAvatarUrl,
-    required this.description,
-    required this.htmlUrl,
-    required this.forksCount,
-    required this.openIssuesCount,
-    required this.language,
-    required this.licenseKey,
-    required this.topics,
-    required this.createdAt,
-    required this.disabled,
-    required this.isOpenIssuesCount,
-  });
+  GitModel(
+      {required this.id,
+      required this.name,
+      required this.fullName,
+      required this.ownerLogin,
+      required this.ownerAvatarUrl,
+      required this.description,
+      required this.htmlUrl,
+      required this.forksCount,
+      required this.openIssuesCount,
+      required this.language,
+      required this.licenseKey,
+      required this.topics,
+      required this.createdAt,
+      required this.disabled,
+      required this.isOpenIssuesCount,
+      required this.stars});
 
   factory GitModel.fromJson(Map<String, dynamic> json) {
     return GitModel(
@@ -50,6 +51,7 @@ class GitModel {
       createdAt: DateTime.parse(json['created_at']),
       disabled: json['disabled'] ?? false,
       isOpenIssuesCount: json['open_issues_count'] ?? 0,
+      stars: json['stargazers_count'] ?? 0,
     );
   }
 }

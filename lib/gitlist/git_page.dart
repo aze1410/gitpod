@@ -22,16 +22,39 @@ class GitPage extends StatelessWidget {
               children: [
                 PageAppBar2(),
                 SizedBox(height: 20),
-                Text(
-                  gitModel.name,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  "Today , Shared by " + gitModel.name,
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          gitModel.name,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          "Today , Shared by " + gitModel.name,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.star_sharp, color: Colors.yellow.shade800),
+                        Text(gitModel.stars.toString()),
+                        SizedBox(width: 8),
+                        Text("Stars"),
+                      ],
+                    )
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 40.0),
@@ -99,19 +122,52 @@ class GitPage extends StatelessWidget {
                 ),
 
                 //
+                SizedBox(height: 10),
 
+                Text(
+                  "Project Description",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    gitModel.description,
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                  ),
+                ),
+                SizedBox(height: 30),
                 Text(
                   "Project Progress",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "Project Overview",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: gitModel.topics
+                        .map(
+                          (topic) => Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 4.0, right: 8.0),
+                                child: Icon(Icons.check_circle,
+                                    size: 16, color: Colors.green),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  topic,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ),
               ],
             ),
